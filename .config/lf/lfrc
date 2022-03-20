@@ -1,0 +1,78 @@
+#Basic Settings
+set ratios 1:2:3
+set cleaner ~/.config/lf/cleaner
+set previewer ~/.config/lf/preview
+set shell sh
+set hidden true
+set drawbox!
+
+#Custom Functions
+
+#Move file
+cmd move %{{
+  set -f 
+  echo "Move file to: "   
+  read ans 
+  mv $fx $ans
+}}
+
+#Make Directory
+cmd mkdir ${{
+  mkdir $1
+}}
+
+#Add File
+cmd touch ${{
+  case "$f"	in
+    *.c) touch $1 && echo "#include <stdio.h>\n\nint main(){\n\n}" >> $1;;
+    *) touch $1 ;;
+  esac
+}}
+
+#Open with
+cmd openwith ${{
+  $1 $f
+}}
+
+#Open Files
+cmd open ${{
+  set -f
+  case "$f" in 
+    #Archive extractor
+    *.zip) unzip "$f" ;;
+    *.tar.gz) tar -xzvf "$f" ;;
+    *.tar.bz2) tar -xjvf "$f" ;;
+    *.tar) tar -xvf "$f" ;;
+    #Open Media 
+    *.png|*.jpeg|*.jpg) nsxiv -b "$f";; 
+    *.gif) nsxiv -b -a "$f";;
+    *.mov|*.webm|*.mp4|*.mkv) mpv "$f";; 
+    *.m4a|*.mp3) mpv "$f";; 
+    *.pdf) mupdf "$f";; 
+    #Editor 
+    *) $EDITOR "$f" ;;
+  esac
+}}
+
+#Bindings
+#Empty Bindings
+map d
+map y
+map p
+map z
+map a
+map l
+map mv
+map m
+map r
+
+#Main Binds
+map a rename
+map yy copy
+map mv move
+map pp paste
+map dD delete
+map ZZ quit
+map l open
+map r reload
+map <enter> open
