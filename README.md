@@ -9,6 +9,7 @@ My config files for my minimal bspwm/void desktop
 - Alacritty
 - Qutebrowser
 - Neo-vim
+- dmenu
 - oksh
 - doas
 - Sxhkd
