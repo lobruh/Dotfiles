@@ -17,7 +17,8 @@ My config files for my minimal bspwm/void desktop
 - lf
   - Image viewer: https://github.com/cirala/lfimg
 - nsxiv
-
+### Scripts
+- https://github.com/lobruh/scripts
 
 
 
