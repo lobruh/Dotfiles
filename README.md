@@ -15,6 +15,7 @@ My config files for my minimal bspwm/void desktop
 - mpv
 - mupdf
 - lf
+- scrot
   - Image viewer: https://github.com/cirala/lfimg
 - nsxiv
 ### Scripts
