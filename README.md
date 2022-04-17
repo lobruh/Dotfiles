@@ -9,13 +9,14 @@ My config files for my minimal bspwm/void desktop
 - Alacritty
 - Qutebrowser
 - Neo-vim
-- dmenu
 - oksh
+- newsboat
+- htop
+- xBanish
 - doas
 - Sxhkd
 - mpv
 - mupdf
-- lf
 - scrot
   - Image viewer: https://github.com/cirala/lfimg
 - nsxiv

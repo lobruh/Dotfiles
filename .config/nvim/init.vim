@@ -1,17 +1,15 @@
 "Remaps
-nnoremap <C-n> :silent! w <CR>
-nnoremap <C-j> :wincmd j <CR>
-nnoremap <C-h> :wincmd h <CR>
-nnoremap <C-k> :wincmd k <CR>
-nnoremap <C-l> :wincmd l <CR>
+map <C-n> :silent! w <CR>
+map <C-j> :wincmd j <CR>
+map <C-h> :wincmd h <CR>
+map <C-k> :wincmd k <CR>
+map <C-l> :wincmd l <CR>
 map <A-Tab> :tabnext <CR> 
 map <C-t> :silent! tabnew +Ntree <CR>
 map <C-w> :tabclose <CR>
 tnoremap <Esc> <C-\><C-n><C-w><C-k>
 
 "Commands run on enter 
-"Start NERDTree
-autocmd VimEnter * NERDTree | wincmd p
 "Term split
 autocmd VimEnter * wincmd l
 autocmd VimEnter * split | wincmd j | term

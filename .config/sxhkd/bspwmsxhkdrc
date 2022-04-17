@@ -4,10 +4,6 @@
 super + Return
 	alacritty
 
-#Dmenu
-super + shift + d
- dmenu_run -nb Black -nf White -sb White -sf Black -p Search: -i
-
 ###################################################################################
 
 ####Restart
@@ -15,9 +11,7 @@ super + shift + d
 #Restart bspwm
 super + r
         bspc wm -r && pkill -USR1 -x sxhkd
-
 ###################################################################################
-
 ####Desktops stuff
 
 #Switch focus to different desktop
@@ -37,8 +31,8 @@ super + shift + {1-5}
 ####Window modifications
 
 #Kill window
-super + {_,shift + }q
-	bspc node -{c,k}
+super + q
+	bspc node -c
 
 #Fullscreen
 super + f 
@@ -96,8 +90,10 @@ XF86MonBrightnessDown
 
 #scrot segmented screenshot
 ctrl + Print
-	scrot -f -s /home/void/Media/Images/Screenshots/screenshot.png -e 'xclip -selection c -t image/png < $f'
+	scrot -f -s /home/void/media/imgs/ss/screenshot.png -e 'xclip -selection c -t image/png < $f'
 
 #scrot full screenshot
 Print
-	scrot /home/void/Media/Images/Screenshots/screenshot.png -e 'xclip -selection c -t image/png < $f'
+	scrot /home/void/media/imgs/ss/screenshot.png -e 'xclip -selection c -t image/png < $f'
+
+###################################################################################

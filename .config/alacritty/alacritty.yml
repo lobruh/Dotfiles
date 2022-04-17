@@ -25,5 +25,10 @@ colors:
     magenta: '0xff00ff'
     cyan:    '0x00ffff'
     white:   '0xffffff'
-
-
+key_bindings:
+  - { key: Paste,                                       action: Paste          }
+  - { key: Copy,                                        action: Copy           }
+  - { key: K,         mods: Alt,                        action: ScrollPageUp,  }
+  - { key: J,         mods: Alt,                        action: ScrollPageDown }
+  - { key: H,         mods: Alt,                        chars: "\x1bb"}
+  - { key: L,         mods: Alt,                        chars: "\x1bf"}

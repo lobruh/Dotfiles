@@ -8,8 +8,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Plugins
     " Better syntax support
     Plug 'sheerun/vim-polyglot'
-    " File explorer
-    Plug 'scrooloose/NERDTree'
     "Plug 'lambdalisue/fern.vim' 
     " Auto pairing
     Plug 'jiangmiao/auto-pairs'

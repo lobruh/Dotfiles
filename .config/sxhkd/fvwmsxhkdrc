@@ -1,0 +1,12 @@
+####Applications
+
+#Terminal
+super + Return
+	alacritty
+
+######################################################################
+####Window control
+
+#Kill
+super + q
+	xdo kill
