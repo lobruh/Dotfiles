@@ -2,7 +2,7 @@
 My config files for my minimal bspwm/void desktop 
 
 <p align="center">
-  <img src="Pictures/screenshot_051.png">
+  <img src=".pics/screenshot_051.png">
 </p>
 
 ### Software
@@ -18,7 +18,6 @@ My config files for my minimal bspwm/void desktop
 - mpv
 - mupdf
 - scrot
-  - Image viewer: https://github.com/cirala/lfimg
 - nsxiv
 ### Scripts
 - https://github.com/lobruh/scripts
