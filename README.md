@@ -1,6 +1,10 @@
 # Dotfiles
 My config files for my minimal bspwm/void desktop 
 
+<p align="center">
+  <img src="Pictures/screenshot_051.png">
+</p>
+
 ### Software
 - Alacritty
 - Qutebrowser
