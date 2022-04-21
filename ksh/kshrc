@@ -1,1 +1,133 @@
-/home/void/.config/ksh/kshrc
+#Config
+#PS1="[\A \W]\$ "
+export PS1='[`date | grep -Eo ".{2}:.{2}"` `echo ${PWD} | sed "s|/home/void|~|g"`]\$ '
+export HISTFILE=/home/void/.config/ksh/ksh_history
+HISTSIZE=500
+
+#Functions
+cdplus (){
+	cd ${1} && tree -a --dirsfirst -L 1
+}
+
+mpvplus (){
+  mkdir -pv ~/.cache/xdgr
+  export XDG_RUNTIME_DIR=${PATH}:~/.cache/xdgr
+  XDG_RUNTIME_DIR=/run/user/1001 
+  mpv ${*}
+  unset XDG_RUNTIME_DIR
+}
+
+touchplus (){
+  case "${1}"	in
+    *.c) touch ${1} && echo "#include <stdio.h>\n\nint main(){\n\n}" >> ${1};;
+    *.sh) touch ${1} && echo "#!/bin/sh\n" >> ${1} && chmod +x ${1};;
+    *.ms) touch ${1} && echo ".TL\n\n.PP" >> ${1};;
+    *.html) touch ${1} && echo "<!DOCTYPE html>\n<html>\n  <head>\n    <title></title>\n  </head>\n  <body>\n\n  </body>\n</html>" >> ${1};;
+    *) case "${PWD}" in
+        ~/docs/scripts/sh | ~/.local/bin) touch ${1} && echo "#!/bin/sh\n" >> ${1} && chmod +x ${1};;
+        *) touch ${1} && echo "\n" >> ${1};;
+       esac;;
+  esac
+}
+
+swallowbspwm (){
+  export hiddenID=$(bspc query -n -N)
+	xdo hide ${hiddenID}
+	${*}
+	xdo show -r ${hiddenID}
+}
+
+open (){
+  if [ -f ${1} ];
+  then
+	  case "${1}" in
+	  	#Open media
+     *.png|*.jpeg|*.jpg) swallowbspwm nsxiv -b ${1};; 
+     *.gif) swallowbspwm nsxiv -b -a ${1};;
+	  	*.mp4 | *.mov | *.webm | *.mkv) swallowbspwm mpvplus ${1};;
+	  	*.m4a | *.mp3 | *.wav | *.ogg) mpvplus ${1};;
+     *.pdf | *.xps | *.epub | *.xhtml | *.cbz) swallowbspwm mupdf -I ${1};; 
+	  	*) nvim ${1};;
+  	esac
+  else
+    cd ${1}
+  fi
+}
+
+run (){
+  ${1} > /dev/null 2>&1 &
+  xdo kill
+}
+
+#Aliases
+
+##Dir aliases
+alias home='cd ~'
+alias ~='cd ~'
+alias h='cd ~'
+alias back='cd ../'
+alias bck='cd ../'
+alias ../='cd ../'
+alias b='cd ../'
+alias config='cd ~/.config/'
+alias conf='cd ~/.config/'
+alias docs='cd ~/docs/'
+alias media='cd ~/media/'
+alias dl='cd ~/dl/'
+alias scripts='cd ~/docs/scripts/'
+alias script='cd ~/docs/scripts/'
+alias vids='cd ~/media/vids/'
+alias srecs='cd ~/media/vids/srecs/'
+alias srec='cd ~/media/vids/srecs/'
+alias ytdl='cd ~/media/vids/ytdls/'
+alias ytdls='cd ~/media/vids/ytdls/'
+alias bin='cd ~/.local/bin/'
+alias sh='cd ~/docs/scripts/sh'
+alias c='cd ~/docs/scripts/c'
+alias web='cd ~/docs/scripts/websites'
+alias webs='cd ~/docs/scripts/websites'
+alias websites='cd ~/docs/scripts/websites'
+alias images='cd ~/media/imgs && swallowbspwm nsxiv -t $(echo $PWD/* ${PWD}/*/* | sed "s| |\n|g" | grep -Eo ".{,}..{,}")'
+alias img='cd ~/media/imgs && swallowbspwm nsxiv -t $(echo $PWD/* ${PWD}/*/* | sed "s| |\n|g" | grep -Eo ".{,}..{,}")'
+alias imgs='cd ~/media/imgs && swallowbspwm nsxiv -t $(echo $PWD/* ${PWD}/*/* | sed "s| |\n|g" | grep -Eo ".{,}\..{,}")'
+alias ss='cd ~/media/imgs/ss/'
+alias audio='cd ~/media/audio'
+alias aud='cd ~/media/audio'
+alias kshrc='cd ~/.config/ksh/ && nvim kshrc'
+alias repo='cd ~/docs/scripts/repos'
+alias repos='cd ~/docs/scripts/repos'
+#Other aliases
+alias r='run'
+alias ^='fc -s'
+alias mousekeys='setxkbmap -option keypad:pointerkeys'
+alias pwd='echo `echo ${PWD} | sed "s|/home/void|~|g"`'
+alias clear='clear && fetch'
+alias ls='tree -a --dirsfirst -L 1'
+alias cd='cdplus'
+alias touch='touchplus'
+alias reboot='doas reboot'
+alias poweroff='doas poweroff'
+alias fdisk='doas fdisk'
+alias mount='mountscript'
+alias umount='doas umount'
+alias o='open'
+alias news='newsboat'
+alias browser='run ${BROWSER}'
+alias webcam='mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video0'
+alias mpv='mpvplus'
+alias aria2c='cd ~/dl && aria2c'
+alias dvid='cd ~/media/vids/ytdls && yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"'
+alias daud='cd ~/media/audio/ytaud && yt-dlp -f "ba" -x --audio-format wav '
+
+#History recall and stuff
+set -o emacs
+alias __A=$(print '\0020') 
+alias __B=$(print '\0016')
+alias __C=$(print '\0006') 
+alias __D=$(print '\0002')
+alias __H=$(print '\0001')
+
+#Autorun commands
+fetch
+xrdb /home/void/.config/Xresources 
+stty -ixon
